@@ -5,7 +5,8 @@ const productSchema = new Schema({
     type: String,
   },
   category: {
-    type: String,
+    type:Schema.Types.ObjectId,
+    ref:"category",
   },
   images: [
     {
@@ -23,7 +24,8 @@ const productSchema = new Schema({
     type: String,
   },
   productBrand: {
-    type: String,
+    type:Schema.Types.ObjectId,
+    ref:"brand",
   },
 
   sizes: [

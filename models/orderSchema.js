@@ -59,3 +59,17 @@ const orderSchema = new Schema({
 }, { timestamps: true });
 
 export const Order = model('order', orderSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
