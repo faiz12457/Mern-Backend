@@ -18,6 +18,7 @@ export const getProducts = async (req, res) => {
       }
     }
 
+    
     const totalDocs = await Product.find({}).sort(sort).countDocuments();
     const products = await Product.find({})
       .sort(sort)
