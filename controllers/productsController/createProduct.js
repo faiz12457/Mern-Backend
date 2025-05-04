@@ -1,13 +1,16 @@
+import { uploadOnCloudinary } from "../../fileUpload/cloudnary.js";
+import { upload } from "../../fileUpload/multer.js";
 import { Brand } from "../../models/brandSchema.js";
 import { Category } from "../../models/categorySchema.js";
 import { Product } from "../../models/productSchema.js";
+
+
 
 export const createProduct = async (req, res) => {
     try {
         const {
             name,
             category,
-            images,
             price,
             discountPercentage,
             description,
@@ -22,6 +25,16 @@ export const createProduct = async (req, res) => {
             return res.status(400).json({ message: "Missing required fields" });
         }
 
+        const paths = req.files.map(file => file.path);
+    
+        const uploadResults=await Promise.all(
+            paths.map((path)=>uploadOnCloudinary(path))
+        )
+
+        const urls=uploadResults.map((data)=>data.url)
+        
+
+
         
         let productCategory = await Category.findOne({ name: category });
         if (!productCategory) {
@@ -32,11 +45,11 @@ export const createProduct = async (req, res) => {
         if (!brand) {
             brand = await Brand.create({ name: productBrand });
         }
-        const colors = colorsAvailable.map((i) => i.trim().toLowerCase());
+
 
         const product = new Product({
             name,
-            images,
+            images:urls,
             price,
             discountPercentage,
             description,
@@ -45,7 +58,7 @@ export const createProduct = async (req, res) => {
             sizes,
             inStock:true,
             stockQuantity,
-            colorsAvailable:colors
+            colorsAvailable
         });
 
         await product.save();
