@@ -1,5 +1,4 @@
 import { uploadOnCloudinary } from "../../fileUpload/cloudnary.js";
-import { upload } from "../../fileUpload/multer.js";
 import { Brand } from "../../models/brandSchema.js";
 import { Category } from "../../models/categorySchema.js";
 import { Product } from "../../models/productSchema.js";
