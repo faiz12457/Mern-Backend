@@ -7,7 +7,7 @@ export const getAddress = async (req, res) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.Access_TOKEN_KEY);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
     const address = await Address.findOne({user:decoded.id}).select("-user");
     if (!address) return res.status(404).json({ message: "Address not found" });
 

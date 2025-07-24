@@ -9,7 +9,7 @@ export const addressUpdateController = async (req, res) => {
 
     try {
 
-        const decoded = jwt.verify(token, process.env.Access_TOKEN_KEY);
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
     
       const updatedAddress = await Address.findOneAndUpdate(
         { user:decoded.id },

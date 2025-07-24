@@ -7,7 +7,7 @@ const addressSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref:"user",
+    ref:"User",
     required: true,
   },
 

@@ -10,7 +10,7 @@ export const deleteAllCart=async(req,res)=>{
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.Access_TOKEN_KEY);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
 
      
    const result=await Cart.deleteMany({user:decoded.id});

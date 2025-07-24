@@ -20,7 +20,7 @@ export const registerController = async (req, res) => {
       });
     }
 
-     const decoded = jwt.verify(user, process.env.Access_TOKEN_KEY);
+     const decoded = jwt.verify(user, process.env.ACCESS_TOKEN_KEY);
      const currAdd=await Address.findOne({user:decoded.id});
      
      if(currAdd){
@@ -43,7 +43,9 @@ export const registerController = async (req, res) => {
     const savedAddress = await newAddress.save();
 
     res.status(201).json(savedAddress);
-  } catch (err) {
+  } catch (err) { 
+    
+
     if (err.name === "ValidationError") {
       return res.status(400).json({
         message: "Validation failed",

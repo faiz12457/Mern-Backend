@@ -15,7 +15,7 @@ export const getCartItems = async (req, res) => {
     }
 
 
-         const decoded = jwt.verify(token, process.env.Access_TOKEN_KEY);
+         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
 
 
     const items = await Cart.find({ user: decoded.id }).populate([

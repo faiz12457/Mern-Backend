@@ -11,7 +11,7 @@ export const deleteAddress = async (req, res) => {
       return res.status(401).json({ message: "No token provided" });
     }
 
-    const decoded = jwt.verify(token, process.env.Access_TOKEN_KEY);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
 
     const deletedAddress = await  Address.findOneAndDelete({user:decoded.id});
 

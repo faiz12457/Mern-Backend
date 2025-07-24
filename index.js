@@ -4,12 +4,13 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
-import authRoute from "./routes/authRoute.js";
+import authRoute from "./routes/authRoutes.js";
 import productRoute from "./routes/productRoute.js"
 import addressRoute from "./routes/addressRoutes.js"
 import reviewRouter from "./routes/reviewRouter.js"
 import cartRouter from "./routes/cartRoutes.js"
 import orderRouter from "./routes/orderRouter.js"
+import userRouter from "./routes/userRoutes.js"
 import db from "./config/mongo-db-connection.js";
 import "./config/passport-setup.js";
 const app = express();
@@ -31,6 +32,7 @@ app.use("/address",addressRoute)
 app.use("/review",reviewRouter);
 app.use("/cart",cartRouter);
 app.use('/order',orderRouter);
+app.use('/user',userRouter);
 
 
 

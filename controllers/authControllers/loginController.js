@@ -1,54 +1,51 @@
-import dotenv from "dotenv";
-
-dotenv.config();
 import { User } from "../../models/UserSchema.js";
+import { cookieOptions } from "../../utils/cookieOptions.js";
 
-
-export const loginController=async (req, res) => {
+export const loginController = async (req, res) => {
+  try {
     const { email, password } = req.body;
-  
-    try {
-    
-      const user = await User.findOne({ email });
-      if (!user || !user.password) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-      }
-  
 
-      const isMatch = await user.comparePassword(password);
-      if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-      }
-  
-    
-      const accessToken = user.generateAccessToken();
-      const refreshToken = user.generateRefreshToken();
-  
-    
-      user.refreshToken = refreshToken;
-      await user.save();
-  
-    
-      res
-        .cookie('refreshToken', refreshToken, {
-          httpOnly: true,
-          secure: true,
-          sameSite: 'Strict',
-          maxAge: 7 * 24 * 60 * 60 * 1000
-        })
-        .status(200)
-        .json({
-          message: 'Login successful',
-          accessToken,
-          user: {
-            id: user._id,
-            username: user.username,
-            email: user.email,
-          },
-        });
-  
-    } catch (err) {
-      
-      res.status(500).json({ message: err });
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Invalid credentials",
+      });
     }
+
+    const user = await User.findOne({ email, provider: "local" });
+    if (!user) {
+      return res.status(400).json({
+        message: "Invalid Credentials",
+      });
+    }
+
+    const isMatch = await user.comparePassword(password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
+
+    res
+      .cookie("refreshToken", refreshToken, cookieOptions)
+      .status(200)
+      .json({
+        message: "Login successful",
+        
+          user: {
+          id: user._id,
+          userName: user.userName,
+          email: user.email,
+          profilePic:user.profilePic,
+          isVerified:user.isVerified,
+          isAdmin:user.isAdmin,
+          accessToken,
+        },
+      });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Something went wrong", error: error.message });
   }
+};

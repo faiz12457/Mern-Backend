@@ -14,17 +14,4 @@ router.patch("/update/:token",addressUpdateController);
 router.get("/:token",getAddress);
 router.delete("/delete/:token",deleteAddress);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default router;

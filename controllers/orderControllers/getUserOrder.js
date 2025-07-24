@@ -9,7 +9,7 @@ export const getUserOrder = async (req, res) => {
       return res.status(401).json({ message: "No token provided" });
     }
     
-    const decoded = jwt.verify(token, process.env.Access_TOKEN_KEY);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
     
     const order = await Order.find({ user: decoded.id }).populate([
       { path: "user", select: "username email" },
