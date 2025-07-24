@@ -14,7 +14,7 @@ export const signUpController = async (req, res) => {
 
     if (existUser) {
       return res.status(400).json({
-        message: "User Already Exist",
+        message: "User is Already Exist",
       });
     }
 
