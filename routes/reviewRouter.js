@@ -3,6 +3,7 @@ import { registerReviewController } from "../controllers/reviewControllers/regis
 import { productReviewController } from "../controllers/reviewControllers/productReviewController.js";
 import { deleteReview } from "../controllers/reviewControllers/deleteReview.js";
 import { updateReview } from "../controllers/reviewControllers/updateReview.js";
+import { verifyAccessToken } from "../middlewares/verifyAccessToken.js";
 const router=express.Router();
 
 
@@ -12,10 +13,10 @@ const router=express.Router();
 
 
 
-router.post("/register",registerReviewController);
-router.get("/product/:id",productReviewController);
-router.delete("/delete/:id",deleteReview);
-router.patch("/update/:id",updateReview);
+router.post("/register",verifyAccessToken,registerReviewController);
+router.get("/product/:id",verifyAccessToken,productReviewController);
+router.delete("/delete/:id",verifyAccessToken,deleteReview);
+router.patch("/update/:id",verifyAccessToken,updateReview);
 
 export default router;
 
