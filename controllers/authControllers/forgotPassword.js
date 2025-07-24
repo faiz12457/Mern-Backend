@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 
 import dotenv from 'dotenv'
 dotenv.config();
+
 export const forgetPasswordController = async (req, res) => {
   const { email } = req.body;
 
@@ -33,7 +34,7 @@ export const forgetPasswordController = async (req, res) => {
       subject: `Password Reset Link for Dear ${user.userName} `,
       html: `We received a request to reset the password for your account. If you initiated this request, please use the following link to reset your password:</p>
         
-        <p><a href=${process.env.Front_END_URL}/reset-password/${user._id}?token=${token} target="_blank">Reset Password</a></p>
+        <p><a href=${process.env.FRONT_END_URL}/reset-password/${user._id}?token=${token} target="_blank">Reset Password</a></p>
         
         <p>This link is valid for only 5 minutes. If you did not request a password reset, please ignore this email. Your account security is important to us.
         
