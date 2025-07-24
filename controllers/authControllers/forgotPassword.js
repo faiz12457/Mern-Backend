@@ -5,6 +5,8 @@ import { User } from "../../models/UserSchema.js";
 import { generateOtp } from "../../utils/generateOtp.js";
 import bcrypt from "bcrypt";
 
+import dotenv from 'dotenv'
+dotenv.config();
 export const forgetPasswordController = async (req, res) => {
   const { email } = req.body;
 
