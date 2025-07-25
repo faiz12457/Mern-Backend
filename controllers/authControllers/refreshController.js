@@ -6,7 +6,7 @@ import { cookieOptions } from "../../utils/cookieOptions.js";
 dotenv.config();
 
 export const refreshController = async (req, res) => {
-  const token = req.cookies.refreshToken||req.cookies.token;
+  const token = req.cookies.refreshToken;
   if (!token)
     return res.status(401).json({ message: "No refresh token provided" });
   try {

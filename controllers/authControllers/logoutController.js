@@ -5,7 +5,7 @@ dotenv.config();
 
 export const logoutController = async (req, res) => {
   try {
-    const token = req.cookies.refreshToken||req.cookies.token;
+    const token = req.cookies.refreshToken;
 
     if (!token) return res.status(400).json({ message: "No token provided" });
 
@@ -20,7 +20,7 @@ export const logoutController = async (req, res) => {
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
-      sameSite: "Strict",
+      sameSite: "None",
     });
  
     res.status(200).json({ message: "Logged out successfully" });
