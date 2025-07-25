@@ -5,7 +5,8 @@ dotenv.config();
 
 export const logoutController = async (req, res) => {
   try {
-    const token = req.cookies.refreshToken;
+    const token = req.cookies.refreshToken||req.cookies.token;
+
     if (!token) return res.status(400).json({ message: "No token provided" });
 
     const decoded = jwt.verify(token,process.env.REFRESH_TOKEN_KEY);
@@ -21,10 +22,10 @@ export const logoutController = async (req, res) => {
       secure: true,
       sameSite: "Strict",
     });
-
-    
+ 
     res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
+    console.log(error)
       res.status(400).json({ message: "Invalid token" ,error:error.message });
   }
 };

@@ -32,14 +32,14 @@ export const loginController = async (req, res) => {
       .status(200)
       .json({
         message: "Login successful",
-        
-          user: {
+
+        user: {
           id: user._id,
           userName: user.userName,
           email: user.email,
-          profilePic:user.profilePic,
-          isVerified:user.isVerified,
-          isAdmin:user.isAdmin,
+          profilePic: user.profilePic,
+          isVerified: user.isVerified,
+          isAdmin: user.isAdmin,
           accessToken,
         },
       });
