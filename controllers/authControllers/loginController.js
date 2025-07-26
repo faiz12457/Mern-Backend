@@ -26,6 +26,10 @@ export const loginController = async (req, res) => {
 
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
+    
+     user.refreshToken=refreshToken;
+
+     await user.save();
 
     res
       .cookie("refreshToken", refreshToken, cookieOptions)
