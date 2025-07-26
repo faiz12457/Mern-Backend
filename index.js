@@ -12,10 +12,11 @@ import cartRouter from "./routes/cartRoutes.js"
 import orderRouter from "./routes/orderRouter.js"
 import userRouter from "./routes/userRoutes.js"
 import adminRouter from "./routes/adminRoutes.js"
+
 import db from "./config/mongo-db-connection.js";
 import "./config/passport-setup.js";
 const app = express();
-const port = 3000;
+const port = process.env.PORT||3000;
 
 app.use(
   cors({
