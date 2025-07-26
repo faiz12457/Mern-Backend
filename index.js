@@ -11,6 +11,7 @@ import reviewRouter from "./routes/reviewRouter.js"
 import cartRouter from "./routes/cartRoutes.js"
 import orderRouter from "./routes/orderRouter.js"
 import userRouter from "./routes/userRoutes.js"
+import adminRouter from "./routes/adminRoutes.js"
 import db from "./config/mongo-db-connection.js";
 import "./config/passport-setup.js";
 const app = express();
@@ -33,6 +34,7 @@ app.use("/review",reviewRouter);
 app.use("/cart",cartRouter);
 app.use('/order',orderRouter);
 app.use('/user',userRouter);
+app.use("/admin",adminRouter);
 
 
 

@@ -19,8 +19,8 @@ export const getProducts = async (req, res) => {
     }
 
     
-    const totalDocs = await Product.find({}).sort(sort).countDocuments();
-    const products = await Product.find({})
+    const totalDocs = await Product.find({isDeleted:false}).sort(sort).countDocuments();
+    const products = await Product.find({isDeleted:false})
       .sort(sort)
       .skip(skip)
       .limit(limit)
