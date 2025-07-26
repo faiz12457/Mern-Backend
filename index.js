@@ -19,7 +19,7 @@ const port = 3000;
 
 app.use(
   cors({
-    origin:[process.env.LOCAL_URL],//  React frontend URL
+    origin:[process.env.LOCAL_URL,process.env.FRONT_END_URL],//  React frontend URL
     credentials: true,
   })
 );
