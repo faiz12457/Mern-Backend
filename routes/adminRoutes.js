@@ -7,6 +7,7 @@ import { deleteProductController } from "../controllers/adminControllers/deleteP
 import { restoreProductController } from "../controllers/adminControllers/restoreProduct.js";
 import { getAllOrdersController } from "../controllers/adminControllers/getAllOrders.js";
 import { updateOrderStatus } from "../controllers/adminControllers/updateOrderStatus.js";
+import { updateProductController } from "../controllers/adminControllers/updateProduct.js";
 
 
 const router=express.Router();
@@ -18,6 +19,7 @@ router.delete("/softDelete/:id",verifyAccessToken,deleteProductController)
 router.post("/restore/:id",verifyAccessToken,restoreProductController);
 router.get("/orders",verifyAccessToken,getAllOrdersController);
 router.post("/updateOrderStatus/:id",verifyAccessToken,updateOrderStatus);
+router.post("/updateProduct/:id",verifyAccessToken,updateProductController);
 
 
 

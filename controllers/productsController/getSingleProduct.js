@@ -8,7 +8,7 @@ export const getSingleProduct=async(req,res)=>{
             const {id}=req.params;
     
             
-               const product=await Product.findById(id);
+               const product=await Product.findById(id).populate("category").populate("productBrand");
             
                if(!product){
                 return res.status(401).json({ message: 'Product not found' })
