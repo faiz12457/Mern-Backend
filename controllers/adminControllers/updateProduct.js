@@ -63,7 +63,7 @@ export const updateProductController = async (req, res) => {
 
     res.status(200).json({ message: "Product updated", updatedProduct });
   } catch (error) {
-    console.log(error);
+    
     res.status(500).json({
       message: "Server Error",
       error: error.message,
