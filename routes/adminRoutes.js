@@ -19,7 +19,7 @@ router.delete("/softDelete/:id",verifyAccessToken,deleteProductController)
 router.post("/restore/:id",verifyAccessToken,restoreProductController);
 router.get("/orders",verifyAccessToken,getAllOrdersController);
 router.post("/updateOrderStatus/:id",verifyAccessToken,updateOrderStatus);
-router.post("/updateProduct/:id",verifyAccessToken,updateProductController);
+router.post("/updateProduct/:id",upload.array('file', 10),verifyAccessToken,updateProductController);
 
 
 
