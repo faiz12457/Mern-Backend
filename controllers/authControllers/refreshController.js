@@ -23,7 +23,7 @@ export const refreshController = async (req, res) => {
     user.refreshToken=refreshToken;
 
     await user.save();
-    res.cookies("refreshToken", refreshToken, cookieOptions);
+    res.cookie("refreshToken", refreshToken, cookieOptions);
     res.status(200).json({ accessToken });
   } catch (error) {
     return res
